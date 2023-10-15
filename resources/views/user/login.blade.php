@@ -25,7 +25,7 @@
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-                <form action="" method="post">
+                <form action="{{route('user.authenticate')}}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" value="{{ old('email') }}" name="email" id="email"
