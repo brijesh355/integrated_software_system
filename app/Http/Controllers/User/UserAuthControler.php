@@ -113,6 +113,7 @@ class UserAuthControler extends Controller
                 if (file_exists(public_path($name =  $file->getClientOriginalName()))) {
                    $deletePic = url('uploads/images/'.$update['profile_pic']);
                    if($deletePic){
+                    // Deelte Pic
                     File::delete($deletePic);
                    }
                     unlink(public_path($name));

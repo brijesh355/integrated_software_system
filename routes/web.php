@@ -46,8 +46,11 @@ Route::group(['prefix' => 'user/'], function () {
         // Task Management Route
         Route::controller(TaskManagementController::class)->group(function () {
             Route::get('task','taskList')->name('user.taskList');
-            Route::get('edit-task','editTask')->name('user.edit.task');
-            Route::post('update-task','updateTask')->name('user.update.task');
+            Route::get('create-task','createTask')->name('user.create.task');
+            Route::post('store-task','storeTask')->name('user.store.task');
+            Route::get('edit-task/{id}','editTask')->name('user.edit.task');
+            Route::post('update-task/{id}','updateTask')->name('user.update.task');
+            Route::get('delete-task/{id}','deleteTask')->name('user.delete.task');
         });
     });
 });

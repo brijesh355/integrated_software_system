@@ -19,7 +19,7 @@
     <section class="content">
         <!-- Default box -->
         <div class="container-fluid">
-            <form action="{{ route('user.update.task') }}" method="post">
+            <form action="{{ route('user.store.task') }}" method="post">
                 @csrf
                 <div class="card">
                     <div class="card-body">
