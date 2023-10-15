@@ -97,11 +97,11 @@
         });
         </script>
         <script>
-            $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
-            $("#success-alert").slideUp(500);
+            $("#success-alert").fadeTo(2000, 1000).slideUp(1000, function(){
+            $("#success-alert").slideUp(1000);
         });
-        $("#error-alert").fadeTo(2000, 500).slideUp(500, function(){
-            $("#error-alert").slideUp(500);
+        $("#error-alert").fadeTo(2000, 1000).slideUp(1000, function(){
+            $("#error-alert").slideUp(1000);
         });
         </script>
     @yield('customjs')

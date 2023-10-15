@@ -25,18 +25,6 @@
                         <p>Task Management</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link {{ request()->routeIs('admin.subcategory.index') ? 'active':'' }}">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>Sub Category</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link {{ request()->routeIs('admin.product.index') ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tag"></i>
-                        <p>Products</p>
-                    </a>
-                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
