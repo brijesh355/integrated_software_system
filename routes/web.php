@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserAuthControler;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// User Route 
+Route::group(['prefix' => 'user/'], function(){
+
+    Route::controller(UserAuthControler::class)->group(function(){
+        Route::get('register','signup')->name('admin.login');
+        Route::post('authenticate','authenticate')->name('admin.authenticate');
+    });
 });
