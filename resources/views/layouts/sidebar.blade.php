@@ -3,7 +3,7 @@
     <a href="#" class="brand-link">
         <img src="{{ asset('admin_assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">E-Commerce</span>
+        <span class="brand-text font-weight-light">User Management</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -14,15 +14,15 @@
                 <!-- Add icons to the links using the .nav-icon class
    with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active':'' }}">
+                    <a href="{{route('user.dashboard')}}" class="nav-link {{ request()->routeIs('user.dashboard') ? 'active':'' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ request()->routeIs('admin.category.index') ? 'active':'' }}">
+                    <a href="{{route('user.taskList')}}" class="nav-link {{ request()->routeIs('admin.category.index') ? 'active':'' }}">
                         <i class="nav-icon fas fa-file-alt"></i>
-                        <p>Category</p>
+                        <p>Task Management</p>
                     </a>
                 </li>
                 <li class="nav-item">

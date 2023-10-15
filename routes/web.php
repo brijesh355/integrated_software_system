@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserAuthControler;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\User\TaskManagementController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,13 @@ Route::group(['prefix' => 'user/'], function () {
             Route::get('logout','logout')->name('user.logout'); 
             Route::get('edit-profile','editProfile')->name('user.edit.profile');
             Route::post('update-profile','updateProfile')->name('user.update.profile');
+        });
+
+        // Task Management Route
+        Route::controller(TaskManagementController::class)->group(function () {
+            Route::get('task','taskList')->name('user.taskList');
+            Route::get('edit-task','editTask')->name('user.edit.task');
+            Route::post('update-task','updateTask')->name('user.update.task');
         });
     });
 });
