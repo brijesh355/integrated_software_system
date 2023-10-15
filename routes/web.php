@@ -51,6 +51,7 @@ Route::group(['prefix' => 'user/'], function () {
             Route::get('edit-task/{id}','editTask')->name('user.edit.task');
             Route::post('update-task/{id}','updateTask')->name('user.update.task');
             Route::get('delete-task/{id}','deleteTask')->name('user.delete.task');
+            Route::get('status-task-filter','filterTask')->name('user.filter.task');
         });
     });
 });

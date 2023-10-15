@@ -11,28 +11,32 @@ use Illuminate\Support\Facades\Validator;
 
 class TaskManagementController extends Controller
 {
-    public function taskList(Request $request){
-        $taskList = Task::orderBy('due_date','Desc');
-        if(!empty($request->get('keyword'))){
-            $taskList = $taskList->where('title','like','%'.$request->get('keyword').'%');
+    public function taskList(Request $request)
+    {
+        $taskList = Task::when($request->status_filter != null, function ($query) use($request){
+            return $query->where('status',$request->status_filter);
+        })->orderBy('due_date', 'Desc');
+        if (!empty($request->get('keyword'))) {
+            $taskList = $taskList->where('title', 'like', '%' . $request->get('keyword') . '%');
         }
         $taskList = $taskList->paginate(10);
-        return view('user.task.list',compact('taskList'));
+        return view('user.task.list', compact('taskList'));
     }
-    public function createTask(){
+    public function createTask()
+    {
         return view('user.task.create');
     }
-    public function storeTask(Request $request){
+    public function storeTask(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'title' =>    'required|min:3|max:100',
             'due_date' => 'required|date',
             'description' => 'required|min:6|max:200',
-        ]); 
+        ]);
         if ($validator->fails()) {
             return Redirect()->back()->withErrors($validator);
-        }
-        else{
+        } else {
             $create = [
                 'title' => $request->title,
                 'due_date' => Carbon::parse($request->due_date)->format('Y-m-d'),
@@ -44,30 +48,32 @@ class TaskManagementController extends Controller
             return redirect()->route('user.taskList')->with('success', 'Task created successfully.');
         }
     }
-    public function editTask(Request $request, $id){
-        $task = Task::where('id',$id)->first();
-        if($task){
-            return view('user.task.edit',compact('task'));
+    public function editTask(Request $request, $id)
+    {
+        $task = Task::where('id', $id)->first();
+        if ($task) {
+            return view('user.task.edit', compact('task'));
         }
     }
-    public function deleteTask($id){
-       $task = Task::where('id',$id)->first();
-       if($task){
-        $task->delete();
-        return redirect()->route('user.taskList')->with('success', 'Task deleted successfully.');
-       }
+    public function deleteTask($id)
+    {
+        $task = Task::where('id', $id)->first();
+        if ($task) {
+            $task->delete();
+            return redirect()->route('user.taskList')->with('success', 'Task deleted successfully.');
+        }
     }
-    public function updateTask(Request $request){
-        
+    public function updateTask(Request $request)
+    {
+
         $validator = Validator::make($request->all(), [
             'title' =>    'required|min:3|max:100',
             'due_date' => 'required|date',
             'description' => 'required|min:6|max:200',
-        ]); 
+        ]);
         if ($validator->fails()) {
             return Redirect()->back()->withErrors($validator);
-        }
-        else{
+        } else {
             $create = [
                 'title' => $request->title,
                 'due_date' => Carbon::parse($request->due_date)->format('Y-m-d'),
@@ -77,6 +83,9 @@ class TaskManagementController extends Controller
             ];
             Task::create($create);
             return redirect()->route('user.taskList')->with('success', 'Task created successfully.');
+        }
     }
-}
+    public function filterTask(Request $request){
+        
+    }
 }
