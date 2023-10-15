@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 class UserAuthControler extends Controller
 {
     public function login(){
-        dd(Auth::guard('web'));
         return view('user.login');
     }
     public function authenticate(Request $request){
@@ -38,7 +37,7 @@ class UserAuthControler extends Controller
         }
     }
     public function dashboard(){
-        
+        return view('user.dashboard');
     }
     public function logout(){
         Auth::guard('web')->logout();
