@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ISS | User Login</title>
+    <title>ISS | User Register</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -21,12 +21,21 @@
         @include('layouts.message')
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="#" class="h3">User Login</a>
+                <a href="#" class="h3">User Register Page</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-                <form action="{{route('user.authenticate')}}" method="post">
+                <p class="login-box-msg">Sign UP to start your session</p>
+                <form action="{{route('user.registerStore')}}" method="post">
                     @csrf
+                    <div class="input-group mb-3">
+                        <input type="name" value="{{ old('name') }}" name="name" id="name"
+                            class="form-control" placeholder="Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="input-group mb-3">
                         <input type="email" value="{{ old('email') }}" name="email" id="email"
                             class="form-control" placeholder="Email">
@@ -48,17 +57,14 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
                 <p class="mb-1 mt-3">
-                    <a href="">I forgot my password</a>
-                </p>
-                <p class="mb-1 mt-3">
-                    {{"Don't Have an Account?"}}
-                    <a href="{{route('user.register')}}">Register</a>
+                    {{"Already have an account?"}}
+                    <a href="{{route('user.login')}}">Login</a>
                 </p>
             </div>
             <!-- /.card-body -->
@@ -75,11 +81,11 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admin_assets/js/demo.js') }}"></script>
     <script>
-        $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
-            $("#success-alert").slideUp(500);
+        $("#success-alert").fadeTo(2000, 1000).slideUp(1000, function() {
+            $("#success-alert").slideUp(1000);
         });
-        $("#error-alert").fadeTo(2000, 500).slideUp(500, function() {
-            $("#error-alert").slideUp(500);
+        $("#error-alert").fadeTo(2000, 1000).slideUp(1000, function() {
+            $("#error-alert").slideUp(1000);
         });
     </script>
 </body>

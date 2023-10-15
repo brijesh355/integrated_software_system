@@ -25,6 +25,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::group(['middleware' => 'user.guest'], function () {
         // Pre Login User Route
         Route::controller(UserAuthControler::class)->group(function () {
+            Route::get('register', 'register')->name('user.register');
+            Route::post('register-store', 'registerStore')->name('user.registerStore');
             Route::get('login', 'login')->name('user.login');
             Route::post('authenticate', 'authenticate')->name('user.authenticate');
         });
@@ -36,6 +38,8 @@ Route::group(['prefix' => 'user/'], function () {
         Route::controller(UserAuthControler::class)->group(function () {
             Route::get('dashboard','dashboard')->name('user.dashboard');
             Route::get('logout','logout')->name('user.logout'); 
+            Route::get('edit-profile','editProfile')->name('user.edit.profile');
+            Route::post('update-profile','updateProfile')->name('user.update.profile');
         });
     });
 });

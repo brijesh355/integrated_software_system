@@ -40,13 +40,16 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
-                        <img src="{{ asset('admin_assets/img/avatar5.png') }}" class='img-circle elevation-2'
+                        <img src="{{Auth::user()->profile_pic ? url('uploads/images/'.Auth::user()->profile_pic) : asset('admin_assets/img/avatar5.png') }}" class='img-circle elevation-2'
                             width="40" height="40" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
-                        <h4 class="h4 mb-0"><strong>Name</strong></h4>
-                        <div class="mb-3">Email</div>
+                        <h4 class="h4 mb-0"><strong>{{Auth::user()->name}}</strong></h4>
+                        <div class="mb-3">{{Auth::user()->email}}</div>
                         <div class="dropdown-divider"></div>
+                        <a href="{{route('user.edit.profile')}}" class="dropdown-item">
+                            <i class="fas fa-user-cog mr-2"></i> Edit Profile
+                        </a>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-user-cog mr-2"></i> Settings
                         </a>
@@ -55,7 +58,7 @@
                             <i class="fas fa-lock mr-2"></i> Change Password
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="" class="dropdown-item text-danger">
+                        <a href="{{route('user.logout')}}" class="dropdown-item text-danger">
                             <i class="fas fa-sign-out-alt mr-2"></i> Logout
                         </a>
                     </div>
