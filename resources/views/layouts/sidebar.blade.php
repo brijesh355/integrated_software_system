@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('user.taskList')}}" class="nav-link {{ request()->routeIs('admin.category.index') ? 'active':'' }}">
+                    <a href="{{route('user.taskList')}}" class="nav-link {{ request()->routeIs('user.taskList') ? 'active':'' }}">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>Task Management</p>
                     </a>

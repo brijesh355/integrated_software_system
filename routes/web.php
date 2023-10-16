@@ -42,6 +42,9 @@ Route::group(['prefix' => 'user/'], function () {
             Route::get('edit-profile','editProfile')->name('user.edit.profile');
             Route::post('update-profile','updateProfile')->name('user.update.profile');
         });
+        // Google Login 
+        Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
+        Route::get('callback/google', [GoogleController::class, 'callbackToGoogle']);
 
         // Task Management Route
         Route::controller(TaskManagementController::class)->group(function () {

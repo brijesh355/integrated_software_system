@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Task;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 
@@ -78,7 +79,10 @@ class UserAuthControler extends Controller
     }
     public function dashboard()
     {
-        return view('user.dashboard');
+        $status['total_status'] = Task::whereNotNull('status')->get()->count();
+        $status['inprogess'] = Task::where('status','Inprogress')->get()->count();
+        $status['completed'] = Task::where('status','Completed')->get()->count();
+        return view('user.dashboard', compact('status'));
     }
     public function logout()
     {
